@@ -1,0 +1,183 @@
+//problem2
+FUNCTION remplir(n:INTEGER) :  ARRAY_OF INTEGER;
+VAR
+   i:INTEGER;
+BEGIN
+     FOR i FROM 0 TO n-1 STEP 1 DO
+        read("remplir tableaut",t[i]);
+     END_FOR
+    RETURN t ;
+END
+
+FUNCTION somme (nb:INTEGER,t:ARRAY_OF INTEGER , n :INTEGER) : BOOLEAN
+VAR
+    i:INTEGER
+BEGIN
+   r:=flase;
+REPEAT
+   IF (nb=t[i]) THEN
+    r:= true;
+   END_IF
+   i:=i+1
+UNTIL ((r==true )||( i=n-1))
+    RETURN r ;
+END
+
+
+FUNCTION somme(t3,t4:ARRAY_OF INTEGER) : INTEGER
+VAR
+    i,s1, s2 ,s :INTEGER;
+BEGIN
+s1:=0; s2:=0;
+
+    FOR i FROM 0 TO t3 .length -1 STEP 1  DO
+        s1:=s1+t3[i];
+    END_FOR
+ FOR i FROM 0 TO t4 .length -1 STEP 1  DO
+        s2:=s2+t4[i];
+    END_FOR
+
+     s:=s1+s2;
+    RETURN s ;
+END
+
+FUNCTION disc(t,t2:ARRAY_OF INTEGER,n: INTEGER) : ARRAY_OF INTEGER
+VAR
+   i:INTEGER;
+   r:BOOLEAN;
+BEGIN
+   FOR i FROM 0 TO n-1 STEP 1 DO
+    r:=recheche(t[i],t2,n);
+    IF (r==flase) THEN
+        tab:=t[i];
+    END_IF
+   END_FOR
+    RETURN tab ;
+END
+
+
+
+
+
+
+
+ALGORITHM algorithm_name
+VAR
+    n:INTEGER 
+    t1,t2  : ARRAY_OF INTEGER[n];
+BEGIN
+     read (" taille tableau ",n);
+     t1:= remplir(n);
+     t2:= remplir(n);
+     t3:=disc(t1,t2,n);
+     t4:=disc(t2,t1,n);
+     s:=somme(t3,t4);
+     write( " disc element",s );
+     FOR i FROM 0 TO t3.length-1 STEP 1 DO
+        write( "les nombre" t3[i]);
+     END_FOR
+     FOR i FROM 0 TO t4.length-1 STEP 1 DO
+        write( "les nombre" t4[i]);
+     END_FOR
+
+
+
+END
+
+
+
+
+//problem 2.1
+
+FUNCTION remplir(n:INTEGER) :  ARRAY_OF INTEGER
+VAR
+ i:INTEGER;
+BEGIN
+     FOR i FROM 0 TO n-1 STEP 1 DO
+        read("remplir tableaut",t[i]);
+     END_FOR
+    RETURN t ;
+END
+
+PROCEDURE produit(var ps:INTEGER ,n:INTEGER ,V1,V2:ARRAY_OF INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+  ps:=0 ;
+  FOR i FROM 0 TO n-1 STEP 1  DO
+  ps:= ps+(V1[i]*V2[i]);
+  END_FOR
+  
+END
+
+
+ALGORITHM problem2
+VAR
+    n,ps:INTEGER ;
+    V1,v2  : ARRAY_OF INTEGER[n];
+    orth: STRING ;
+BEGIN
+ ps:=0;
+ orth:='';
+     read (" taille tableau ",n);
+     V1:= remplir(n);
+     v2:= remplir(n);
+     produit(V1,V2,ps,n);
+     IF (ps==0) THEN
+     orth:'orthogonaux'
+     ELSE
+      orth:"non orthogonaux"
+     END_IF
+    
+     write( " Le produit scalaire de deux vecteurs sont ",orth );
+
+END
+
+
+
+// problem 2.2 par function 
+
+
+FUNCTION remplir(n:INTEGER) :  ARRAY_OF INTEGER
+VAR
+ i:INTEGER;
+BEGIN
+     FOR i FROM 0 TO n-1 STEP 1 DO
+        read("remplir tableaut",t[i]);
+     END_FOR
+  RETURN t ;
+END
+FUNCTION produit(var ps:INTEGER ,n:INTEGER ,V1,V2:ARRAY_OF INTEGER):INTEGER
+VAR
+    i:INTEGER;
+BEGIN
+  ps:=0 ;
+    FOR i FROM 0 TO n-1 STEP 1  DO
+    ps:= ps+(V1[i]*V2[i]);
+    END_FOR
+  RETURN (ps) ;
+END
+
+
+ALGORITHM problem2paunction
+VAR
+    n,ps:INTEGER ;
+    V1,v2  : ARRAY_OF INTEGER[n];
+    orth: STRING ;
+BEGIN
+ 
+     read (" taille tableau ",n);
+     V1:= remplir(n);
+     v2:= remplir(n);
+     ps:=produit(V1,V2,n);
+     IF (ps==0) THEN
+     orth:'orthogonaux'
+     ELSE
+      orth:"non orthogonaux"
+     END_IF
+    
+     write( " Le produit scalaire de deux vecteurs sont ",orth );
+
+END
+
+
